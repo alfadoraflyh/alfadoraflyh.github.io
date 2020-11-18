@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myform</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .formgender{/* menampilkan pada div dengan class=formgender dengan margin left sebesar 20 px dan margin top sebesar 15px serta tulisan pada bagian div dengan font-family sant-serif */
+            margin-left:20px;
+            margin-top:15px;
+            font-family: sans-serif;
+        }
+
+        .infobox {/* menampilkan infobox sepanjang 200px */
+            width: 200px;
+        }
+
+        .error {/* menampilkan paragaf dengan class=error bertulisan merah dengan padding dari kiri sebesar 10px */
+            color: red;
+            padding-left: 10px;
+        }
+        .result{/* menampilkan paragaf dengan class=result bertulisan hijau dengan padding dari kiri sebesar 10px */
+            color: green;
+            padding-left: 10px;
+        }
+        .submit {/* menampilkan tombol submit dengan margin-left sebesar 150 px dan margin top sebesar 10px */
+            margin-left: 150px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="formgender"><!-- perintah untuk membuat bagian dari dokumen html dengan class=formgender --> 
+        <h3>May I know more about you</h3><!-- perintah untuk menampilkan heading pada bagian div -->
+        <form><!-- peintah membuat form HTML untuk user input -->
+            <span class="label">Gender : </span><!-- perintah untuk membuat Wadah sebaris yang digunakan menyatakan bagian dari dokumen yang dinamakan dengan class label dan bertulisan gender  -->
+            <select id="Gender" class="infobox"><!-- perintah untukk membuat form untuk mengumpulkan user input dengan membuat sebuah drop-down list dengan id gender dan menampilkan sebuah infobox -->
+                <option value="0">Select Your Gender</option><!-- perintah untuk membuat list pilihan dengan tulisan "select your gender" dan value = 0 -->
+                <option value="male">Male</option><!-- perintah untuk membuat list pilihan dengan tulisan "male" dan value = male -->
+                <option value="female">Female</option><!-- perintah untuk membuat list pilihan dengan tulisan "female" dan value = female -->
+            </select><!-- perintah untuk mengakhiri fungsi drop-down list -->
+            <p class="error alert alert-danger">You have not selected any Option</p><!-- perintah untuk membuat sebuah paragaf atau tulisan dengan class error yang ditambahkan fungsi boostrap yang dapat menampilkan alert pada saat input belum dimasukkan saat dikombinasikan dnegan jquery -->
+            <p class="result"></p><!-- perintah untuk membuat sebuah paragaf atau tulisan dengan nama class = result yang nanti akan menampilkan hasil dari pilihan kita saat dikombinasikan dengan jquery -->
+            <script>//perintah untuk menanamkan dan memasukkan bahasa javascript
+                $(document).ready(function () {//sebuah method yang digunakan hanya untuk menampilkan dokumen (DOM )saat ini 
+                    $('.error').hide()//sebuah method yang digunakan untuk menyembunyikan element yang dipilih yaitu class error;
+                    $('.submit').click(function (event) {//sebuah method yang digunakan untuk submit saat form disubmit
+                        var count = $('select option:selected').val();//mengambil nilai opsi yang dipilih dari elemen pilih dan menyimpannya dalam jumlah variabel
+                        if (count == 0) {//Perintah untuk mengeksekusi sebuah blok code apabila nilai variable count = 0
+                            $('p.result').hide();//perintah untuk menyembunyikan class result
+                            $('.error').show();//perintah untuk  menampilkan class error
+                        }
+                        else {//Perintah untuk mengeksekusi sebuah blok code apabila nilai variable count tidak sama dengan 0
+                            $('.error').hide();//perintah untuk menyembunyikan class error
+                            $('p.result').show();//perintah untuk menampilkan class result
+                            $('p.result').text('You have selected '+$('select option:selected').text());//perintah untuk menampilkan class result yang bentuknya berupa hasil pilihan yang telah kita submit
+                        }
+                        event.preventDefault();//method yang digunakan untuk menghentikan kejadian aksi dari sebuah elemen
+                    });
+                });    
+            </script><!-- perintah untuk mengakhiri dalam menanamkan dan memasukkan bahasa javascript -->
+            <input class="submit btn btn-primary" type="submit" value="Submit"><!-- perintah digunakan untuk membuat submit button yang dapat digunakan untuk memasukkan nilai dari form yang dilakukan oleh user -->
+    </div><!-- perintah untuk mengakhiri bagian dari dokumen html dengan class=formgender -->
+</body>
+
+</html>
